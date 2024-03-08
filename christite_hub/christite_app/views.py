@@ -8,6 +8,13 @@ from django.db import IntegrityError
 # Create your views here.
 # social_media/views.py
 
+import os
+from dotenv import load_dotenv
+from twilio.rest import Client
+
+
+
+
 from django.shortcuts import render
 # from .models import Post,Comment
 from .models import Post
@@ -219,11 +226,10 @@ def send_sms_notification(to, message):
     #     )
     # except Exception as e:
     #     print("Error sending SMS:", str(e))
-
-    from twilio.rest import Client
-
-    account_sid = 'ACb72ba0197d367298e7d62b2256695f0b'
-    auth_token = '5c27583bc4bb8b7ce506db2a6860c9b0'
+    load_dotenv()
+    account_sid = os.getenv('account_sid')
+    print(account_sid)
+    auth_token = os.getenv('auth_token')
     client = Client(account_sid, auth_token)
     try:
         message = client.messages.create(
