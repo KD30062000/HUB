@@ -1,0 +1,177 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Profile</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">-->
+<!--  <style>-->
+<!--    body {-->
+<!--        background-color: #343a40; /* Matches the navbar background color */-->
+<!--        color: #fff; /* Sets text color to white for better contrast */-->
+<!--        margin: 0; /* Removes default margin */-->
+<!--        padding: 0; /* Removes default padding */-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--        <div class="container-fluid">-->
+<!--          <a class="navbar-brand" href="{% url 'home1' %}">Christite Hub</a>-->
+<!--          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--          </button>-->
+<!--          <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link active" aria-current="page" href="/home1">Home</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="{% url 'logout'%}">Logout</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--            <form class="d-flex" role="search">-->
+<!--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--              <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--            </form>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </nav>-->
+<!--    <div class="container">-->
+<!--      <br>-->
+<!--      <div class="card">-->
+<!--        <h5 class="card-header">{{records.first_name}}</h5>-->
+<!--        <div class="card-body">-->
+<!--          <h5 class="card-title">Information:</h5>-->
+<!--          <p class="card-text"><strong>User Id:</strong>{{records.user_id}}</p>-->
+<!--          <p class="card-text"><strong>Name:</strong>{{records.first_name}}</p>-->
+<!--          <p class="card-text"><strong>Email:</strong>{{records.email}}</p>-->
+<!--          <p class="card-text"><strong>Username:</strong>{{records.username}}</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <br>-->
+<!--      <a href="/" class="btn btn-primary">Back</a>-->
+<!--      <a href="/updateProfile/{{records.user_id}}" class="btn btn-info">Update Records</a>-->
+<!--      <a href="/delete_record/{{records.id}}" class="btn btn-danger">Delete</a>-->
+<!--      </div>-->
+<!--</body>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>-->
+<!--</html>-->
+
+
+
+<!--Chat Gpt Code-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #343a40; /* Matches the navbar background color */
+            color: #fff; /* Sets text color to white for better contrast */
+            margin: 0; /* Removes default margin */
+            padding: 0; /* Removes default padding */
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.05); /* Semi-transparent white background */
+            color: #fff; /* Text color */
+            border: none; /* No border */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Shadow */
+            margin-top: 20px; /* Margin from the top */
+        }
+        .card-header {
+            background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black background for header */
+            border: none; /* No border */
+            color: #fff; /* Text color */
+            border-radius: 15px 15px 0 0; /* Rounded corners only at the top */
+        }
+        .card-body {
+            padding: 20px; /* Padding inside the card body */
+        }
+        .profile-pic {
+            width: 150px; /* Profile picture width */
+            height: 150px; /* Profile picture height */
+            border-radius: 50%; /* Rounded corners for circular shape */
+            object-fit: cover; /* Cover the entire area */
+            margin: 0 auto; /* Center the image horizontally */
+            display: block; /* Ensure it's a block-level element */
+        }
+        .cover-photo {
+            width: 100%; /* Cover the entire container */
+            height: 200px; /* Fixed height for cover photo */
+            object-fit: cover; /* Cover the entire area */
+            border-radius: 15px 15px 0 0; /* Rounded corners only at the top */
+        }
+    </style>
+</head>
+<body>
+{% if messages %}
+<!--<div class="container mt-3">-->
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-2" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+<!--</div>-->
+
+
+<script>
+    // Automatically close each alert after 5 seconds
+    document.addEventListener('DOMContentLoaded', function () {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function (alert) {
+            setTimeout(function () {
+                alert.remove();
+            }, 5000); // 5 seconds
+        });
+    });
+</script>
+{% endif %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home1' %}">Christite Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home1">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <br>
+        <div class="card">
+            <img src="/media/{{ records.cover_image }}" class="card-img-top cover-photo" alt="Cover Photo">
+            <div class="card-body">
+                <img src="/media/{{ records.profile_pic }}" class="profile-pic" alt="Profile Picture">
+                <h5 class="card-title">{{ records.first_name }}</h5>
+                <p class="card-text"><strong>User Id:</strong> {{ records.user_id }}</p>
+                <p class="card-text"><strong>Email:</strong> {{ records.email }}</p>
+                <p class="card-text"><strong>Username:</strong> {{ records.username }}</p>
+            </div>
+        </div>
+        <br>
+        <a href="/" class="btn btn-primary">Back</a>
+        <a href="/updateProfile/{{records.user_id}}" class="btn btn-info">Update Records</a>
+        <a href="/delete_records/{{ records.user_id }}" class="btn btn-danger">Delete</a>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>

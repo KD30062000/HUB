@@ -1,0 +1,112 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Chats</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Chats:</h1>-->
+<!--{% for message in messages %}-->
+<!--{% if message.sender == request.user %}-->
+<!--<p>You: {{message.content}}&#45;&#45;{{message.timestamp}}</p>-->
+<!--{%else%}-->
+<!--<p>{{message.sender}}:{{message.content}}&#45;&#45;{{message.timestamp}}</p>-->
+<!--{% endif %}-->
+<!--{% endfor %}-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--Aditis Code-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chats</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Add any additional styling here */
+        body {
+            background-color: #343a40; /* Matches the navbar background color */
+            color: #000000; /* Sets text color to white for better contrast */
+            margin: 0; /* Removes default margin */
+            padding: 0; /* Removes default padding */
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .chat-header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+            text-align: center;
+        }
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .sender-message {
+            background-color: #007bff;
+            color: #fff;
+            justify-content: flex-end;
+        }
+        .receiver-message {
+            background-color: #28a745;
+            color: #fff;
+            justify-content: flex-start;
+        }
+        .message-content {
+            margin-top: 5px;
+            display: inline-block;
+            max-width: 80%;
+        }
+        .sender-icon {
+            color: #fff;
+            margin-right: 10px;
+        }
+        .receiver-icon {
+            color: #fff;
+            margin-left: 10px;
+        }
+        .message-time {
+<!--            color: #6c757d;-->
+<!--color:#000000-->
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 chat-container">
+        <div class="chat-header">
+            <h1>Chats</h1>
+        </div>
+        <div class="list-group mt-3">
+            {% for message in messages %}
+                <div class="message {% if message.sender == request.user %}sender-message{% else %}receiver-message{% endif %}">
+                    <div class="message-content">
+                        {% if message.sender == request.user %}
+                            You: {{ message.content }}
+                        {% else %}
+                            {{ message.sender }}: {{ message.content }}
+                        {% endif %}
+                        <div class="message-time">{{ message.timestamp }}</div>
+                    </div>
+                    {% if message.sender == request.user %}
+                        <i class="fas fa-user sender-icon"></i>
+                    {% else %}
+                        <i class="fas fa-user receiver-icon"></i>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

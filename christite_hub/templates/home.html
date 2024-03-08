@@ -1,0 +1,141 @@
+<!-- social_media/templates/social_media/home.html -->
+
+<!--{% load static%}-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Home</title>-->
+<!--    <link rel="stylesheet" href="{% static 'home.css' %}">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Welcome to our Social Media App</h1>-->
+<!--    <ul>-->
+<!--        {% for post in posts %}-->
+<!--        <li>{{ post.content }} - by {{ post.user.username }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+
+
+
+<!--    <header>-->
+<!--        <h1>Christite-Hub</h1>-->
+<!--    </header>-->
+<!--    <div class="container">-->
+<!--        <div class="profile">-->
+<!--            <img src="{% static 'img.png' %}" alt="Profile Picture">-->
+<!--            <h2>User</h2>-->
+<!--            <p>Web Developer | Blogger</p>-->
+<!--            <div class="social-links">-->
+<!--                <a href="#" class="social-link">Facebook</a>-->
+<!--                <a href="#" class="social-link">Twitter</a>-->
+<!--                <a href="#" class="social-link">Instagram</a>-->
+<!--                <a href="#" class="social-link">LinkedIn</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="posts">-->
+<!--            <h2>Recent Posts</h2>-->
+<!--            <div class="post">-->
+<!--                <p>This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+<!--            </div>-->
+<!--            <div class="post">-->
+<!--                <p>This is another sample post. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!--{% load static %}-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Home</title>-->
+<!--    <link rel="stylesheet" href="{% static 'home.css' %}">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <header>-->
+<!--        <h1>Christite-Hub</h1>-->
+<!--    </header>-->
+<!--    {% if user.is_authenticated %}-->
+<!--    <div class="container">-->
+<!--        <div class="profile">-->
+<!--            <img src="{% static 'img1.png' %}" alt="Profile Picture">-->
+<!--            <h2>{{ user.username }}</h2>-->
+<!--            <p>Web Developer | Blogger</p>-->
+<!--            <div class="social-links">-->
+<!--                <a href="#" class="social-link">Facebook</a>-->
+<!--                <a href="#" class="social-link">Twitter</a>-->
+<!--                <a href="#" class="social-link">Instagram</a>-->
+<!--                <a href="#" class="social-link">LinkedIn</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="posts">-->
+<!--            <h2>Recent Posts</h2>-->
+<!--            <div class="post">-->
+<!--                <p>This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+<!--            </div>-->
+<!--            <div class="post">-->
+<!--                <p>This is another sample post. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--{% else %}-->
+<!--<p>You are not logged in.</p>-->
+<!--{% endif %}-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Christite-Hub</h1>
+    </header>
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+<!--        <button style="float:right" type="submit" class="logout-btn">Logout</button>-->
+            <button style="padding: 10px 20px; background-color: black; color: #fff; border: none; border-radius: 3px; cursor: pointer; float: right;" type="submit" class="logout-btn">Logout</button>
+
+    </form>
+    <div class="container">
+        <div class="profile">
+            <!--<img src="media/{{profile_pic}}">-->
+            <!--<img src="media/media/Density_Poster_R.png">-->
+            <img src="media/{{profile_pic}}" alt="Profile Pic">
+            <h2>{{ user.username }}</h2>
+            <p>Web Developer | Blogger</p>
+            <div class="social-links">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">LinkedIn</a>
+            </div>
+        </div>
+        <div class="posts">
+            <h2>Recent Posts</h2>
+            <div class="post">
+                <p>This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="post">
+                <p>This is another sample post. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>You are not logged in.</p>
+    {% endif %}
+</body>
+</html>

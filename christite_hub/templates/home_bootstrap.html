@@ -1,0 +1,711 @@
+<!--{%load static%}-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Christite Hub</title>-->
+<!--    <link rel="stylesheet" href="{% static 'home_bootstrap.css' %}">-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>-->
+<!--	<style>-->
+<!--		        body {-->
+<!--            background-color: #cacacc;-->
+<!--        }-->
+<!--	</style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
+<!--&lt;!&ndash;navbar starts&ndash;&gt;-->
+<!--{% if messages %}-->
+<!--    <ul class="messages">-->
+<!--        {% for message in messages %}-->
+<!--            <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--{% endif %}-->
+<!--<nav class="navbar navbar-expand-lg bg-dark">-->
+<!--  <div class="container-fluid">-->
+<!--    <a class="navbar-brand text-white" href="/home1">Christite Hub</a>-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active text-white" aria-current="page" href="/home1">Home</a>-->
+<!--        </li>-->
+<!--		  <li class="nav-item">-->
+<!--          <a class="nav-link text-white" href="{%url 'displayfriends' %}">Friends</a>-->
+<!--		  </li>-->
+<!--		  <li class="nav-item">-->
+<!--          <a class="nav-link text-white" href="">Notifications</a>-->
+<!--		  </li>-->
+<!--        <li class="nav-item dropdown">-->
+<!--          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Dropdown-->
+<!--          </a>-->
+<!--          <ul class="dropdown-menu">-->
+<!--            <li><a class="dropdown-item" href="/profile">Profile</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Settings</a></li>-->
+<!--&lt;!&ndash;            <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a class="dropdown-item" href="#">Something else here</a></li>&ndash;&gt;-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--&lt;!&ndash;        <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;          <a class="nav-link disabled text-white" aria-disabled="true">Disabled</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        </li>&ndash;&gt;-->
+<!--		          <li class="nav-item">-->
+<!--          <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <form class="d-flex">-->
+<!--        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+<!--&lt;!&ndash;<br>&ndash;&gt;-->
+<!--&lt;!&ndash;navbar ends&ndash;&gt;-->
+<!--<div class="container bootdey">-->
+<!--<div class="content-page">-->
+<!--&lt;!&ndash;    <div class="profile-banner" style="background:url(https://bootdey.com/img/Content/bg1.jpg);">&ndash;&gt;-->
+<!--    <div class="profile-banner" style="background:url(/media/{{cover_image}}); background-repeat: no-repeat;background-size: cover;">-->
+<!--		<div class="col-sm-2 avatar-container">-->
+<!--			<img src="/media/{{profile_pic}}" class="img-circle profile-avatar" alt="User avatar" style="height:210px">-->
+<!--		</div>-->
+<!--&lt;!&ndash;		<div class="col-sm-12 profile-actions text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;			<form action="logout">&ndash;&gt;-->
+<!--&lt;!&ndash;				{% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;				<button style="float:right" type="submit" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Logout</button>&ndash;&gt;-->
+<!--&lt;!&ndash;			</form>&ndash;&gt;-->
+<!--&lt;!&ndash;			<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-envelope"></i> Send Message</button>&ndash;&gt;-->
+<!--&lt;!&ndash;		</div>&ndash;&gt;-->
+<!--	</div>-->
+<!--    <div class="content">-->
+
+<!--		<div class="row">-->
+<!--			<div class="col-sm-3">-->
+<!--				&lt;!&ndash; Begin user profile &ndash;&gt;-->
+<!--				<div class="text-center user-profile-2" style="margin-top:120px">-->
+<!--					<ul class="list-group">-->
+<!--                      <li class="list-group-item">-->
+<!--    					<h4><b>{{name}}</b></h4>-->
+<!--						  <h5>Designation:<b>{{designation}}</b></h5>-->
+<!--					  </li>-->
+<!--&lt;!&ndash;					  <li class="list-group-item">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="badge">1,245</span>&ndash;&gt;-->
+<!--&lt;!&ndash;						Followers&ndash;&gt;-->
+<!--&lt;!&ndash;					  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;					  <li class="list-group-item">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="badge">245</span>&ndash;&gt;-->
+<!--&lt;!&ndash;						Following&ndash;&gt;-->
+<!--&lt;!&ndash;					  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;					  <li class="list-group-item">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="badge">1,245</span>&ndash;&gt;-->
+<!--&lt;!&ndash;						Tweets&ndash;&gt;-->
+<!--&lt;!&ndash;					  </li>&ndash;&gt;-->
+<!--					</ul>-->
+
+<!--						&lt;!&ndash; User button &ndash;&gt;-->
+<!--&lt;!&ndash;					<div class="user-button">&ndash;&gt;-->
+<!--&lt;!&ndash;						<div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;							<div class="col-lg-6">&ndash;&gt;-->
+<!--&lt;!&ndash;								<button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</button>&ndash;&gt;-->
+<!--&lt;!&ndash;							</div>&ndash;&gt;-->
+<!--&lt;!&ndash;							<div class="col-lg-6">&ndash;&gt;-->
+<!--&lt;!&ndash;								<button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-user"></i> Add as friend</button>&ndash;&gt;-->
+<!--&lt;!&ndash;							</div>&ndash;&gt;-->
+<!--&lt;!&ndash;						</div>&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&lt;!&ndash; End div .user-button &ndash;&gt;&ndash;&gt;-->
+<!--				</div>&lt;!&ndash; End div .box-info &ndash;&gt;-->
+<!--				&lt;!&ndash; Begin user profile &ndash;&gt;-->
+<!--			</div>&lt;!&ndash; End div .col-sm-4 &ndash;&gt;-->
+
+<!--			<div class="col-sm-9">-->
+<!--				<div class="widget widget-tabbed">-->
+<!--					&lt;!&ndash; Nav tab &ndash;&gt;-->
+<!--&lt;!&ndash;					<ul class="nav nav-tabs nav-justified">&ndash;&gt;-->
+<!--&lt;!&ndash;					  <li class="active"><a href="#my-timeline" data-toggle="tab"><i class="fa fa-pencil"></i> Timeline</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					  <li><a href="#about" data-toggle="tab"><i class="fa fa-user"></i> About</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					  <li><a href="#user-activities" data-toggle="tab"><i class="fa fa-laptop"></i> Activities</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					  <li><a href="#mymessage" data-toggle="tab"><i class="fa fa-envelope"></i> Message</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					</ul>&ndash;&gt;-->
+<!--					&lt;!&ndash; End nav tab &ndash;&gt;-->
+
+<!--					&lt;!&ndash; Tab panes &ndash;&gt;-->
+<!--					<div class="tab-content">-->
+
+
+<!--						&lt;!&ndash; Tab timeline &ndash;&gt;-->
+<!--						<div class="tab-pane animated active fadeInRight" id="my-timeline">-->
+<!--							<div class="user-profile-content">-->
+
+<!--								&lt;!&ndash; Begin timeline &ndash;&gt;-->
+<!--								<div class="the-timeline">-->
+<!--									<form role="form" class="post-to-timeline" action="{% url 'post' %}" method="post" enctype="multipart/form-data">-->
+<!--										{%csrf_token%}-->
+<!--										<textarea class="form-control" name="content" style="height: 70px;margin-bottom:10px;" placeholder="Whats on your mind..."></textarea>-->
+<!--										<div class="row">-->
+<!--										<div class="col-sm-6">-->
+<!--											<label for="file-input" class="file-label">-->
+<!--												<i class="fa fa-upload" aria-hidden="true"></i><strong> Upload image</strong>-->
+<!--											</label>-->
+<!--											<input id="file-input" name="post_image" type="file" class="file-input" style="display:none">-->
+
+<!--&lt;!&ndash;											<a class="btn btn-sm btn-default"><i class="fa fa-upload" aria-hidden="true"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;											<label for="image-upload" class="btn btn-sm btn-default">&ndash;&gt;-->
+<!--&lt;!&ndash;										  	<img src="upload_icon.png" alt="Upload Image">&ndash;&gt;-->
+<!--&lt;!&ndash;											</label>&ndash;&gt;-->
+<!--&lt;!&ndash;											<input id="image-upload" type="file" style="display: none;">&ndash;&gt;-->
+
+<!--&lt;!&ndash;											<a class="btn btn-sm btn-default"><i class="fa fa-video-camera"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;											<a class="btn btn-sm btn-default"><i class="fa fa-map-marker"></i></a>&ndash;&gt;-->
+<!--										</div>-->
+<!--										<div class="col-sm-6 text-right"><button type="submit" class="btn btn-primary">Post</button></div>-->
+<!--										</div>-->
+<!--									</form>-->
+<!--&lt;!&ndash;									<br><br>&ndash;&gt;-->
+
+<!--&lt;!&ndash;									  <div class="container mt-5">&ndash;&gt;-->
+<!--&lt;!&ndash;										<div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;											<p class="card-title"><strong>Koushik Das posted at 4:00 pm</strong></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										  <img src="{%static 'img1.png'%}" class="card-img-top" alt="...">&ndash;&gt;-->
+<!--&lt;!&ndash;										  <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;											<h5 class="card-title">Card title</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;											<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;										</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									  </div>&ndash;&gt;-->
+
+
+
+
+<!--									{% if getPost%}-->
+<!--									{% for post in getPost %}-->
+<!--									<div class="card">-->
+<!--&lt;!&ndash;										<p class="card-title"><strong>Koushik Das posted at 4:00 pm</strong></p>&ndash;&gt;-->
+<!--										<p class="card-title"><strong>{{post.user}} posted on {{post.created_at}}</strong></p>-->
+<!--									  <img src="media/{{ post.post_image}}" class="card-img-top" alt="Photo not uploaded">-->
+<!--										<div class="card-body">-->
+<!--&lt;!&ndash;										<h5 class="card-title">{{ post.title }}</h5>&ndash;&gt;-->
+<!--											<p class="card-text"><strong>Post Content:</strong>{{ post.content }}</p>-->
+
+
+
+<!--&lt;!&ndash;                                                {% if comments %}&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    {% for comment in comments %}&ndash;&gt;-->
+<!--&lt;!&ndash;														{{ comment.content }}&ndash;&gt;-->
+<!--&lt;!&ndash;												<p>{{comment.whose_post}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        {% if post.user == comment.whose_post %}&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            {{ comment.who_commented }} commented {{ comment.what_commented }}&ndash;&gt;-->
+<!--&lt;!&ndash;												{% else %}&ndash;&gt;-->
+<!--&lt;!&ndash;												{{post.user}} {{comment.content}}&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        {% endif %}&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    {% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;                                                {% endif %} &ndash;&gt;-->
+<!--											<ul>-->
+<!--												-->
+<!--												<p>Comment Section:</p>-->
+<!--                {% for comment in comments %}-->
+<!--                    {% if comment.post == post %}-->
+<!--                        <li>{{ comment.user.username }}: {{ comment.content }}</li>-->
+<!--												{%else%}-->
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+
+
+
+
+
+
+
+
+<!--											<form action="/createComment/{{post.id}}" method="post">-->
+<!--												{%csrf_token%}-->
+<!--										<div class="form-group">-->
+<!--										  <label for="comment">Comment:</label>-->
+<!--										  <textarea class="form-control" name="comment" id="comment_{{ post.id }}" rows="3"></textarea>-->
+<!--										</div>-->
+<!--										<button class="btn btn-primary">Submit</button>-->
+<!--											</form>-->
+<!--									  </div>-->
+<!--									</div>-->
+<!--									<br>-->
+<!--									{% endfor %}-->
+<!--									{%endif%}-->
+
+
+
+
+
+
+<!--  &lt;!&ndash; Bootstrap JS and jQuery &ndash;&gt;-->
+<!--  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>-->
+<!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+
+
+
+<!--&lt;!&ndash;									<ul>&ndash;&gt;-->
+<!--&lt;!&ndash;										<li>&ndash;&gt;-->
+<!--&lt;!&ndash;											<div class="the-date">&ndash;&gt;-->
+<!--&lt;!&ndash;												<span>01</span>&ndash;&gt;-->
+<!--&lt;!&ndash;												<small>Feb</small>&ndash;&gt;-->
+<!--&lt;!&ndash;											</div>&ndash;&gt;-->
+<!--&lt;!&ndash;											<h4>Lorem ipsum dolor!</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;											<p>&ndash;&gt;-->
+<!--&lt;!&ndash;											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.&ndash;&gt;-->
+<!--&lt;!&ndash;											</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</li>&ndash;&gt;-->
+<!--&lt;!&ndash;										<li>&ndash;&gt;-->
+<!--&lt;!&ndash;											<div class="the-date">&ndash;&gt;-->
+<!--&lt;!&ndash;												<span>31</span>&ndash;&gt;-->
+<!--&lt;!&ndash;												<small>Jan</small>&ndash;&gt;-->
+<!--&lt;!&ndash;											</div>&ndash;&gt;-->
+<!--&lt;!&ndash;											<h4>Yohoo! you can put video here</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;											<div class="videoWrapper">&ndash;&gt;-->
+<!--&lt;!&ndash;											<iframe src="//player.vimeo.com/video/85847275?title=0&amp;byline=0&amp;portrait=0"></iframe>&ndash;&gt;-->
+<!--&lt;!&ndash;											</div>&ndash;&gt;-->
+<!--&lt;!&ndash;											<p>&ndash;&gt;-->
+<!--&lt;!&ndash;											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.&ndash;&gt;-->
+<!--&lt;!&ndash;											</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</li>&ndash;&gt;-->
+<!--&lt;!&ndash;										<li>&ndash;&gt;-->
+<!--&lt;!&ndash;											<div class="the-date">&ndash;&gt;-->
+<!--&lt;!&ndash;												<span>25</span>&ndash;&gt;-->
+<!--&lt;!&ndash;												<small>Jan</small>&ndash;&gt;-->
+<!--&lt;!&ndash;											</div>&ndash;&gt;-->
+<!--&lt;!&ndash;											<h4>You also can put Soundcloud iframe here</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;											<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/132890481&amp;color=ff9900&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true"></iframe>&ndash;&gt;-->
+<!--&lt;!&ndash;											<p>&ndash;&gt;-->
+<!--&lt;!&ndash;											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.&ndash;&gt;-->
+<!--&lt;!&ndash;											</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</li>&ndash;&gt;-->
+<!--&lt;!&ndash;										<li class="the-year"><p>2013</p></li>&ndash;&gt;-->
+<!--&lt;!&ndash;										<li>&ndash;&gt;-->
+<!--&lt;!&ndash;											<div class="the-date">&ndash;&gt;-->
+<!--&lt;!&ndash;												<span>20</span>&ndash;&gt;-->
+<!--&lt;!&ndash;												<small>Dec</small>&ndash;&gt;-->
+<!--&lt;!&ndash;											</div>&ndash;&gt;-->
+<!--&lt;!&ndash;											<p>&ndash;&gt;-->
+<!--&lt;!&ndash;											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.&ndash;&gt;-->
+<!--&lt;!&ndash;											</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</li>&ndash;&gt;-->
+<!--&lt;!&ndash;										<li>&ndash;&gt;-->
+<!--&lt;!&ndash;											<div class="the-date">&ndash;&gt;-->
+<!--&lt;!&ndash;												<span>27</span>&ndash;&gt;-->
+<!--&lt;!&ndash;												<small>Nov</small>&ndash;&gt;-->
+<!--&lt;!&ndash;											</div>&ndash;&gt;-->
+<!--&lt;!&ndash;											<p>&ndash;&gt;-->
+<!--&lt;!&ndash;											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.&ndash;&gt;-->
+<!--&lt;!&ndash;											</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									</ul>&ndash;&gt;-->
+<!--								</div>&lt;!&ndash; End div .the-timeline &ndash;&gt;-->
+<!--								&lt;!&ndash; End timeline &ndash;&gt;-->
+<!--							</div>&lt;!&ndash; End div .user-profile-content &ndash;&gt;-->
+<!--						</div>&lt;!&ndash; End div .tab-pane &ndash;&gt;-->
+<!--						&lt;!&ndash; End Tab timeline &ndash;&gt;-->
+
+<!--						&lt;!&ndash; Tab about &ndash;&gt;-->
+<!--&lt;!&ndash;						<div class="tab-pane animated fadeInRight" id="about">&ndash;&gt;-->
+<!--&lt;!&ndash;							<div class="user-profile-content">&ndash;&gt;-->
+<!--&lt;!&ndash;								<h5><strong>ABOUT</strong> ME</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;								<p>&ndash;&gt;-->
+<!--&lt;!&ndash;								Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.&ndash;&gt;-->
+<!--&lt;!&ndash;								</p>&ndash;&gt;-->
+<!--&lt;!&ndash;								<hr>&ndash;&gt;-->
+<!--&lt;!&ndash;								<div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="col-sm-6">&ndash;&gt;-->
+<!--&lt;!&ndash;										<h5><strong>CONTACT</strong> ME</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;											<address>&ndash;&gt;-->
+<!--&lt;!&ndash;												<strong>Phone</strong><br>&ndash;&gt;-->
+<!--&lt;!&ndash;												<abbr title="Phone">+62 857 123 4567</abbr>&ndash;&gt;-->
+<!--&lt;!&ndash;											</address>&ndash;&gt;-->
+<!--&lt;!&ndash;											<address>&ndash;&gt;-->
+<!--&lt;!&ndash;												<strong>Email</strong><br>&ndash;&gt;-->
+<!--&lt;!&ndash;												<a href="mailto:#">first.last@example.com</a>&ndash;&gt;-->
+<!--&lt;!&ndash;											</address>&ndash;&gt;-->
+<!--&lt;!&ndash;											<address>&ndash;&gt;-->
+<!--&lt;!&ndash;												<strong>Website</strong><br>&ndash;&gt;-->
+<!--&lt;!&ndash;												<a href="http://r209.com">http://r209.com</a>&ndash;&gt;-->
+<!--&lt;!&ndash;											</address>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="col-sm-6">&ndash;&gt;-->
+<!--&lt;!&ndash;										<h5><strong>MY</strong> SKILLS</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;										<p>UI Design</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										<p>Clean and Modern Web Design</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										<p>PHP and MySQL Programming</p>&ndash;&gt;-->
+<!--&lt;!&ndash;										<p>Vector Design</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								</div>&lt;!&ndash; End div .row &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;							</div>&lt;!&ndash; End div .user-profile-content &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;						</div>&lt;!&ndash; End div .tab-pane &ndash;&gt;&ndash;&gt;-->
+<!--						&lt;!&ndash; End Tab about &ndash;&gt;-->
+
+
+<!--						&lt;!&ndash; Tab user activities &ndash;&gt;-->
+<!--&lt;!&ndash;						<div class="tab-pane animated fadeInRight" id="user-activities">&ndash;&gt;-->
+<!--&lt;!&ndash;							<div class="scroll-user-widget">&ndash;&gt;-->
+<!--&lt;!&ndash;								<ul class="media-list">&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>John Doe</strong> Uploaded a photo <strong>"DSC000254.jpg"</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>2 minutes ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>John Doe</strong> Created an photo album  <strong>"Indonesia Tourism"</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>8 minutes ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Annisa</strong> Posted an article  <strong>"Yogyakarta never ending Asia"</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>an hour ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Ari Rusmanto</strong> Added 3 products&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>3 hours ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Hana Sartika</strong> Send you a message  <strong>"Lorem ipsum dolor..."</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>12 hours ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Johnny Depp</strong> Updated his avatar&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>Yesterday</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>John Doe</strong> Uploaded a photo <strong>"DSC000254.jpg"</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>2 minutes ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>John Doe</strong> Created an photo album  <strong>"Indonesia Tourism"</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>8 minutes ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Annisa</strong> Posted an article  <strong>"Yogyakarta never ending Asia"</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>an hour ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Ari Rusmanto</strong> Added 3 products&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>3 hours ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Hana Sartika</strong> Send you a message  <strong>"Lorem ipsum dolor..."</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>12 hours ago</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;										<p><strong>Johnny Depp</strong> Updated his avatar&ndash;&gt;-->
+<!--&lt;!&ndash;										<br><i>Yesterday</i></p>&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									</li>&ndash;&gt;-->
+<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;							</div>&lt;!&ndash; End div .scroll-user-widget &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;						</div>&lt;!&ndash; End div .tab-pane &ndash;&gt;&ndash;&gt;-->
+<!--						&lt;!&ndash; End Tab user activities &ndash;&gt;-->
+
+<!--						&lt;!&ndash; Tab user messages &ndash;&gt;-->
+<!--&lt;!&ndash;						<div class="tab-pane animated fadeInRight" id="mymessage">&ndash;&gt;-->
+<!--&lt;!&ndash;							<div class="scroll-user-widget">&ndash;&gt;-->
+<!--&lt;!&ndash;								<ul class="media-list">&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">John Doe</a> <small>Just now</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Annisa</a> <small>Yesterday at 04:00 AM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Rusmanovski</a> <small>January 17, 2014 05:35 PM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Ari Rusmanto</a> <small>January 17, 2014 05:35 PM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Jenny Doe</a> <small>January 17, 2014 05:35 PM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">John Doe</a> <small>Just now</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Annisa</a> <small>Yesterday at 04:00 AM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Rusmanovski</a> <small>January 17, 2014 05:35 PM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Ari Rusmanto</a> <small>January 17, 2014 05:35 PM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								  <li class="media">&ndash;&gt;-->
+<!--&lt;!&ndash;									<a class="pull-left" href="#fakelink">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <img class="media-object user-message" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;									</a>&ndash;&gt;-->
+<!--&lt;!&ndash;									<div class="media-body">&ndash;&gt;-->
+<!--&lt;!&ndash;									  <h4 class="media-heading"><a href="#fakelink">Jenny Doe</a> <small>January 17, 2014 05:35 PM</small></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>&ndash;&gt;-->
+<!--&lt;!&ndash;									</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								  </li>&ndash;&gt;-->
+<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;							</div>&lt;!&ndash; End div .scroll-user-widget &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;						</div>&lt;!&ndash; End div .tab-pane &ndash;&gt;&ndash;&gt;-->
+<!--						&lt;!&ndash; End Tab user messages &ndash;&gt;-->
+<!--					</div>&lt;!&ndash; End div .tab-content &ndash;&gt;-->
+<!--				</div>&lt;!&ndash; End div .box-info &ndash;&gt;-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+<!--New Code from Chat Gpt-->
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christite Hub</title>
+    <link rel="stylesheet" href="{% static 'home_bootstrap.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <style>
+<!--        body {-->
+<!--            background-color: #cacacc;-->
+<!--        }-->
+<!--        .avatar-container {-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .profile-avatar {-->
+<!--            height: 210px;-->
+<!--            width: 210px;-->
+<!--            border-radius: 50%;-->
+<!--            object-fit: cover;-->
+<!--        }-->
+
+            body {
+        background-color: #343a40; /* Matches the navbar background color */
+        color: #fff; /* Sets text color to white for better contrast */
+        margin: 0; /* Removes default margin */
+        padding: 0; /* Removes default padding */
+    }
+        .cover-photo {
+    width: 100%;
+    height: 40%;
+    object-fit: cover; /* Ensures the image covers the entire container */
+}
+    </style>
+</head>
+<body>
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-2" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+<script>
+    // Automatically close each alert after 5 seconds
+    document.addEventListener('DOMContentLoaded', function () {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function (alert) {
+            setTimeout(function () {
+                alert.remove();
+            }, 5000); // 5 seconds
+        });
+    });
+</script>
+{% endif %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home1' %}">Christite Hub</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home1">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'displayfriends' %}">Friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Notifications</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+<!--            <li><a class="dropdown-item" href="#">Settings</a></li>-->
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!--For Cover Image-->
+<!--<div class="container-fluid">-->
+<!--    <img src="/media/{{ cover_image }}" alt="Cover Photo" class="cover-photo">-->
+<!--</div>-->
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="text-center user-profile-2">
+                <img src="/media/{{ profile_pic }}" class="img-fluid profile-avatar" alt="User avatar">
+                <h4 class="mt-3"><b>{{ name }}</b></h4>
+                <h5>Designation: <b>{{ designation }}</b></h5>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <form role="form" class="post-to-timeline" action="{% url 'post' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea class="form-control mb-3" name="content" rows="3" placeholder="What's on your mind..."></textarea>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="file-input" class="file-label">
+                                    <i class="fa fa-upload" aria-hidden="true"></i><strong> Upload image</strong>
+                                </label>
+                                <input id="file-input" name="post_image" type="file" class="file-input" style="display:none">
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <button type="submit" class="btn btn-primary">Post</button>
+                            </div>
+                        </div>
+                    </form>
+                    {% if getPost %}
+                        {% for post in getPost %}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <p class="card-title"><strong>{{ post.user }} posted on {{ post.created_at }}</strong></p>
+                                    <img src="/media/{{ post.post_image }}" class="card-img-top" alt="Photo not uploaded">
+                                    <div class="card-text">
+                                        <strong>Post Content:</strong> {{ post.content }}
+                                    </div>
+                                    <ul class="list-unstyled mt-3">
+                                        <li>Comment Section:</li>
+                                        {% for comment in comments %}
+                                            {% if comment.post == post %}
+                                                <li>{{ comment.user.username }}: {{ comment.content }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                    <form action="/createComment/{{ post.id }}" method="post">
+                                        {% csrf_token %}
+                                        <div class="mb-3">
+                                            <label for="comment">Comment:</label>
+                                            <textarea class="form-control" name="comment" id="comment_{{ post.id }}" rows="3"></textarea>
+                                        </div>
+                                        <button class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+
+
+
